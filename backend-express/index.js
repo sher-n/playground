@@ -4,6 +4,7 @@ const app = express();
 const TodoListRoute = require('./routes/todoList');
 const UserRoute = require('./routes/user')
 const db = require('./models')
+require('./config/passport/passport');
 
 app.use(cors());
 app.use(express.json());
