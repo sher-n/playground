@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended : false }));
 
-app.use('/user', UserRoute);
+app.use('/users', UserRoute);
 app.use('/todo-list', TodoListRoute);
 
 
