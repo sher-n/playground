@@ -1,18 +1,18 @@
-const { urlencoded } = require('express');
 const express = require('express');
 const cors = require('cors');
 const app = express();
-import TodolistRoutes from './routes/todoList'
+const TodoListRoute = require('./routes/todoList');
+const db = require('./models')
 
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended : false }));
 
-app(cor());
-app(express.json());
-app(express.urlencoded({ extended : false }));
-
-app.use('/users', )
-
-
+app.use('/', TodoListRoute);
 
 
 
-app.listen(8000, () => console.log('server is running at port 8000'))
+db.sequelize.sync().then(() => {
+    app.listen(8000, () => console.log('server is running at port 8000'));
+})
+
