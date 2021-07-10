@@ -3,7 +3,6 @@ const db = require('../models');
 
 const getTodoList = async (req,res) => {
     const todoList = await db.TodoList.findAll({ where : { user_id : req.user.id}})
-    console.log(req.user)
     res.status(200).send(todoList);
 }
 const createTodoList = async (req,res) => {
