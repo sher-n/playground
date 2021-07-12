@@ -1,15 +1,52 @@
+const db = require("../models");
+const bcryptjs = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
-const getUser = (req,res) => {
-    res.send('userlist');
+const getUser = async (req,res) => {
+    const userList = await db.User.findAll({});
+    res.status(200).send(userList);
 }
 
-const registerUser = (req,res) => {
-    res.send('register');
-}
+const registerUser = async (req,res) => {
+    const { username, password ,email, nickname } = req.body;
+    const targetUser = await db.User.findOne({ where : { username : username }});
+    if (targetUser) {
+        res.status(404).send({ message : `username ${username} has already taken.`});
+    } else {
+        const salt = bcryptjs.genSaltSync(12);
+        const hashPassword = bcryptjs.hashSync(password, salt);
+        await db.User.create({ 
+            username : username,
+            password : hashPassword,
+            email : email,
+            nickname : nickname
+        });
+        res.status(201).send({ message : `user ${username} has been created`});
+    }
+    }
 
-const loginUser = (req,res) => {
-    res.send('login');
-}
+const loginUser = async (req,res) => {
+    const { username, password } = req.body;
+    const targetUser = await db.User.findOne({ where : { username : username}});
+    if (!targetUser) {
+        res.status(404).send({message : "Wrong username or password"})
+    } else {
+        const isCorrectPassword = bcryptjs.compareSync(password, targetUser.password);
+        if (!isCorrectPassword) {
+            res.status(404).send({message : "Wrong username or password"});
+        } else {
+            const payload = {
+                id : targetUser.id,
+                name : targetUser.nickname
+            }
+            const token = jwt.sign(payload, 'ggez', { expiresIn : 3600 })
+            res.status(200).send({  
+                token : token,
+                message : "you are logging in"
+            })
+        }
+    }
+}   
 
 module.exports = {
     registerUser,
