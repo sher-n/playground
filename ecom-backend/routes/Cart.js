@@ -1,10 +1,12 @@
 const express = require('express');
 const router = express.Router();
-
+const passport = require('passport');
 const CartControllers = require('../controllers/Cart');
 
-router.get('/', CartControllers.getCart);
-router.post('/', CartControllers.addCart);
+const authentication = passport.authenticate('jwt', { session: false });
+
+router.get('/',authentication, CartControllers.getCart);
+router.post('/',authentication, CartControllers.addCart);
 // router.put('/:id', CartControllers.editCart);
 // router.delete('/:id', CartControllers.deleteCart);
 

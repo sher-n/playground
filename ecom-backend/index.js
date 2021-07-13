@@ -6,7 +6,7 @@ const cartRoutes = require('./routes/Cart');
 const productRoutes = require('./routes/Product');
 const db = require('./models');
 
-// require('./config/passport/passport');
+require('./config/passport/passport');
 
 app.use(cors());
 app.use(express.json());

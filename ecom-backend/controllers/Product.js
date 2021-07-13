@@ -17,7 +17,7 @@ const addProduct = async (req,res) => {
             amount : amount
         });
 
-        res.status(201).send({ message : "Product added"});
+        res.status(201).send({ message : `Product ${product_name} added `});
     
 };
 

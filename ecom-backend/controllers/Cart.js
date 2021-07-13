@@ -2,7 +2,7 @@ const db = require("../models");
 
 
 const getCart = async (req,res) => {
-    const cartList = await db.Interact.findAll(); //{ where : { UserId : req.user.id}}
+    const cartList = await db.Interact.findAll({ where : { user_id : req.user.id}}); //{ where : { UserId : 
     res.status(200).send(cartList);
 }
 
@@ -11,8 +11,8 @@ const addCart = async (req,res) => {
     await db.Interact.create({ 
         amount : amount,
         status : 'cart',
-        UserId : 1,
-        ProductId : product_id
+        user_id : req.user.id,
+        product_id : product_id
 
     })
     res.status(201).send({ message : "item added"});

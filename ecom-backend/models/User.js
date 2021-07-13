@@ -21,7 +21,7 @@ module.exports = (sequelize, dataTypes) => {
     });
 
     model.associate = models => {
-        model.belongsToMany(models.Product, { through : models.Interact});
+        model.belongsToMany(models.Product, { through : models.Interact , foreignKey : 'user_id'});
         // model.hasOne(models.Cart, { foreignKey : "user_id"});
         // model.hasOne(models.Buy, { foreignKey : "user_id"});
 
