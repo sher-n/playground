@@ -1,9 +1,11 @@
 #container {
-    
+   display: flex;
+   flex-direction: column;
 }
 
 
-/* .card-container {
+#card-container {
+  width: 50px;
 }
 
 .image-container {
@@ -12,7 +14,7 @@
 
 .detail-container {
 
-} */
+}
 
 img {
     border: 1px solid rgb(223, 118, 118);
