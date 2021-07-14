@@ -1,0 +1,24 @@
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+#cate-name {
+    align-self: center;
+    padding-left: 10px;
+}
+#cate-product {
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+/* 
+.catename-container {
+    width: 100%;
+    height: 20%;
+}
+
+
+.cateproduct-container {
+    width: 100%;
+    height: 80%;
+} */

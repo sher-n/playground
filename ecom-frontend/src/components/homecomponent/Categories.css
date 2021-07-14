@@ -1,0 +1,13 @@
+#container {
+    background-color: indigo;
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+}
+
+.each-cate-container {
+    background-color: slategray;
+    width: 50%;
+    border: 1px solid salmon;
+    margin: 10px 5px;
+}

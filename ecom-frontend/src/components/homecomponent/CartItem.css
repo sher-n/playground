@@ -1,0 +1,26 @@
+#container {
+    
+}
+
+
+/* .card-container {
+}
+
+.image-container {
+   
+}
+
+.detail-container {
+
+} */
+
+img {
+    border: 1px solid rgb(223, 118, 118);
+    border-radius: 4px;
+    padding: 5px;
+    width: 50px;
+  }
+  
+.btn-container {
+
+}
