@@ -1,20 +1,13 @@
 import React from 'react';
-import Category from './Category';
 import './Categories.css'
+import Category from './Category';
 
 function Categories() {
     return (
         <div id='container'>
-            <div className='each-cate-container'>
-                <Category />
-            </div>
-            <div className='each-cate-container'>
-                <Category />
-            </div>
-            <div className='each-cate-container'>
-                <Category />
-            </div>
-            
+            <div  id="each-cate-container"><Category /></div>
+            <div  id="each-cate-container"><Category /></div>
+            <div  id="each-cate-container"><Category /></div>
         </div>
     )
 }

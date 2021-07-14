@@ -5,14 +5,12 @@ import './Category.css';
 function Category() {
     return (
         <div id='container'>
-            <div id='cate-name'>
-            <h1>Category 1</h1>
-            </div>
-            <div id='cate-product'>
-            <CartItem />
-            <CartItem />
-            <CartItem />
-            <CartItem />
+            <div id ='catename-container'>Category</div>
+            <div id='cateproduct-container'>
+                <CartItem />
+                <CartItem />
+                <CartItem />
+                <CartItem />
             </div>
         </div>
     )

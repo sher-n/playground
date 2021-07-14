@@ -1,20 +1,15 @@
 #container {
-    display: flex;
+    display: block;
     flex-direction: column;
-    width: 100%;
 }
 
-#cate-name {
+#catename-container {
+    width: 100%;
     height: 20%;
-    background-color: snow;
-    width: 100%;
+
 }
 
-
-#cate-product {
+#cateproduct-container {
     width: 100%;
-    height: 80%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-} 
+    height: 20%;
+}
