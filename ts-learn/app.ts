@@ -1,14 +1,12 @@
-enum Role { ADMIN = 'ADMIN', READONLY = 'READONLY', AUTHOR = 'AUTHOR'};
+let userInput : unknown;
+let UserName : string;
 
+userInput = 5;
+userInput = 'Max';
 
-const person = {
-    name: 'John',
-    age : 30,
-    hobbies: ['debug', 'edit'],
-    role : Role.ADMIN 
-};
-
-for (const hobby of person.hobbies) {
-    console.log(hobby)
+if (typeof userInput === 'string') {
+    UserName = userInput;
 }
-console.log(person.role)
+
+
+console.log('sss')
