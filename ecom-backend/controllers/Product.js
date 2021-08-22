@@ -24,13 +24,14 @@ const addProduct = async (req,res) => {
 const editProduct = async (req,res) => {
     const { product_name, price, link, amount } = req.body;
     const targetProduct = await db.Product.findOne({ where : { id : req.params.id }})
+    console.log(targetProduct + "... wtf")
     await targetProduct.update({
         product_name : product_name,
         price : price,
         link : link,
         amount : amount
     })
-    
+    res.status(201).send({ message : `edits product id ${req.params.id}` })
 }
 
 const deleteProduct = async (req,res) => {
