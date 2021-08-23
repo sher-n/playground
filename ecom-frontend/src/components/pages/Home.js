@@ -1,19 +1,14 @@
-import React from 'react'
-import Categories from '.././homecomponent/Categories';
-import './Home.css';
+import Body from "../body/body";
+import Navbar from "../navbar/navbar";
 
-function Home() {
-    return (
-        <div id='home-container'>
-            {/* <FilterSale /> */}
-            <div id='bigfs-container'>FilterSale</div>
-            <div id='bigcate-container'>
-            <Categories />
-            </div>
-            <div id='bigfooter-container'>Footer</div>
-            {/* <Footer /> */}
-        </div>
-    )
-}
 
-export default Home
+const Home = () => {
+  return (
+    <div style={{ height: "100vh" }}>
+      <Navbar />
+      <Body />
+    </div>
+  );
+};
+
+export default Home;
