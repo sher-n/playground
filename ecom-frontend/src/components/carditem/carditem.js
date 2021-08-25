@@ -12,6 +12,7 @@ import {
     Badge,
     AspectRatio,
   } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
 const  CartItem = () => {
     const property = {
@@ -35,7 +36,7 @@ const  CartItem = () => {
           overflow="hidden"
         >
           <AspectRatio maxW="100%" ratio={4 / 3}>
-            <Image src={property.imageUrl} />
+           <Link to="/productdetail" ><Image src={property.imageUrl} /></Link>
           </AspectRatio>
           <Box p="2">
             <Box d="flex" alignItems="baseline">

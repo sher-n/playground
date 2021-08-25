@@ -2,12 +2,22 @@ import { Flex, Heading, Input, Button, FormControl , Box} from "@chakra-ui/react
 import { useState } from "react";
 
 const Login = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log({email, password});
+    // const result = loginUser(email, password);
+    return true;
+}
+
+    const [email , setEmail] = useState("");
+    const [password , setPassword] = useState("");
+  
     return (
         <Flex height="95vh" alignItems="center"
         justifyContent="center">
           <Flex
             direction="column"
-            background={formBackground}
+            background="white"
             p={12}
             rounded={6}
           >

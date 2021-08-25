@@ -1,8 +1,11 @@
 import { Box, Flex } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
 import Button2 from "../button2/button2";
+import { Link } from "react-router-dom";
 
-const NavbarBack = (props) => {
+const NavbarUser = (props) => {
+    const user = {
+        name: "Sher"
+    }
   return (
     <div>
       <Box display="flex" bg="tomato" w="100%"  p={1} color="white">
@@ -12,13 +15,17 @@ const NavbarBack = (props) => {
           </Box>
         </Flex>
         <Flex bg="white" w="100%" p={4} justifyContent="flex-end">
-          {/* <Button2 value="CONTACT US" /> */}
-          <Link to="/"><Button2 value="BACK"/></Link>
-          {/* <Button2 value="REGISTER"/> */}
+        <Link to="/login">
+        <Box as="text" borderRadius="xl" bg="white" color="black" px={8} h={14} marginTop={20} fontSize={20}>
+        {"Welcome, " + user.name}
+</Box>
+        </Link>
+          <Link to="/login"><Button2 value="MY STORE"/></Link>
+          <Link to="/register"><Button2 value="CONTACT US"/></Link>
         </Flex>
       </Box>
     </div>
   );
 };
 
-export default NavbarBack;
+export default NavbarUser;

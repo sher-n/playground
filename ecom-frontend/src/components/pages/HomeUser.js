@@ -1,14 +1,14 @@
 import Body from "../body/body";
-import NavbarGuest from "../navbar/navbarGuest";
+import NavbarUser from "../navbar/navbarUser";
 
 
-const Home = () => {
+const HomeUser = () => {
   return (
     <div style={{ height: "100vh" }}>
-      <NavbarGuest />
+      <NavbarUser />
       <Body />
     </div>
   );
 };
 
-export default Home;
+export default HomeUser;
