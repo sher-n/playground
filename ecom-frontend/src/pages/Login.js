@@ -1,5 +1,6 @@
 import { Flex, Heading, Input, Button, FormControl , Box} from "@chakra-ui/react"
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const handleSubmit = (event) => {
@@ -39,7 +40,7 @@ const Login = () => {
               type="password"
               onChange={(e) => setPassword(e.target.value)}
               />
-            <Button colorScheme="teal" type="submit"> Login</Button>
+            <Link to="/user"><Button colorScheme="teal" type="submit"> Login</Button></Link>
               </form>
           </Flex>
         </Flex>

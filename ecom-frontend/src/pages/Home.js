@@ -1,5 +1,5 @@
-import Body from "../body/body";
-import NavbarGuest from "../navbar/navbarGuest";
+import Body from "../components/body/Body";
+import NavbarGuest from "../components/navbar/navbarGuest";
 
 
 const Home = () => {

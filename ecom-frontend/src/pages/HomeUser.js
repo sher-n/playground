@@ -1,5 +1,5 @@
-import Body from "../body/body";
-import NavbarUser from "../navbar/navbarUser";
+import Body from "../components/body/Body";
+import NavbarUser from "../components/navbar/navbarUser";
 
 
 const HomeUser = () => {
