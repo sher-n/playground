@@ -21,6 +21,7 @@ const registerUser = async (req,res) => {
             email : email,
             nickname : nickname
         });
+
         res.status(201).send({ message : `user ${username} has been created`});
     }
     }
@@ -35,10 +36,22 @@ const loginUser = async (req,res) => {
         if (!isCorrectPassword) {
             res.status(404).send({message : "Wrong username or password"});
         } else {
+            await db.Profile.create({
+                name: "xxx",
+                bio: "xxxx",
+                address: "",
+                balance: 0,
+                user_id: targetUser.id
+            })
+            await db.Store.create({
+                name: username,
+                user_id: targetUser.id
+            })
             const payload = {
                 id : targetUser.id,
-                name : targetUser.nickname
+                username : targetUser.username
             }
+
             const token = jwt.sign(payload, 'ggez', { expiresIn : 3600 })
             res.status(200).send({  
                 token : token,

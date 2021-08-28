@@ -9,20 +9,19 @@ module.exports = (sequelize, dataTypes) => {
         email : {
             type : dataTypes.STRING(255)
         },
-        nickname : {
-            type : dataTypes.STRING(200)
-        },
-        balance : {
-            type : dataTypes.FLOAT(2)
-        }
     },{
         tableName : 'users',
         timestamps : false
     });
 
     model.associate = models => {
-        model.belongsToMany(models.Product, { through : models.Interact , foreignKey : 'user_id'});
-        // model.hasOne(models.Cart, { foreignKey : "user_id"});
+
+        model.hasOne(models.Profile, { foreignKey : "user_id"});
+        model.hasOne(models.Cart, { foreignKey : "user_id"});
+        model.hasOne(models.Store, { foreignKey : "user_id"});
+        model.hasOne(models.PendingList , { foreignKey : "user_id"});
+
+        // model.belongsToMany(models.Product, { through : models.Interact , foreignKey : 'produt'});
         // model.hasOne(models.Buy, { foreignKey : "user_id"});
 
     };

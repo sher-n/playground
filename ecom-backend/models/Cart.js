@@ -1,5 +1,5 @@
 module.exports = (sequelize, dataTypes) => {
-    const model = sequelize.define('Product', {
+    const model = sequelize.define('Cart', {
         product_name : {
             type : dataTypes.STRING(255)
         },
@@ -15,16 +15,17 @@ module.exports = (sequelize, dataTypes) => {
         category : {
             type : dataTypes.STRING(255)
         }
+        
     },{
-        tableName : 'products',
+        tableName : 'carts',
         timestamps : false
     });
 
     model.associate = models => {
-        model.belongsTo(models.Store , { foreignKey: "store_id"});
-        model.hasMany(models.Cart , { foreignKey : 'product_id'});
-        model.hasMany(models.PendingList ,{ foreignKey : 'product_id'});
-    }
+        model.belongsTo(models.User, { foreignKey: "user_id"});
+        model.belongsTo(models.Product, { foreignKey : 'product_id'});
+
+    };
 
     return model;
 }

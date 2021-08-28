@@ -2,34 +2,48 @@ const db = require("../models");
 
 
 const getCart = async (req,res) => {
-    const cartList = await db.Interact.findAll({ where : { user_id : req.user.id}}); //{ where : { UserId : 
+    const cartList = await db.Cart.findAll({ where : { user_id : req.user.id}}); //{ where : { UserId : 
     res.status(200).send(cartList);
 }
 
 const addCart = async (req,res) => {
-    const { amount , product_id } = req.body;
-    await db.Interact.create({ 
-        amount : amount,
-        status : 'cart',
-        user_id : req.user.id,
-        product_id : product_id
 
+    const { product_name } = req.body;
+    const targetProduct = await db.Product.findOne({
+        where : {
+            product_name
+        }
     })
-    res.status(201).send({ message : "item added"});
+    await db.Cart.create({
+        user_id: req.user.id,
+        product_id :targetProduct.id,
+        product_name: targetProduct.product_name,
+        price: targetProduct.price,
+        link: targetProduct.link,
+        description: targetProduct.description
+    })
+
+    res.status(201).send({ message : "added cart"});
 
 };
 
-const editCart = (req,res) => {
+const deleteCart = async (req,res) => {
+    const { product_name } = req.body;
+    const targetCartItem = await db.Cart.findOne({
+        where : {
+            product_name: product_name,
+            user_id: req.user.id
+        }
+    })
 
-}
+    await targetCartItem.destroy();
 
-const deleteCart = (req,res) => {
-
+    // return res.status(204).send(targetCartItem)
+    return res.status(200).send({ message : `removed ${product_name} from cart.`})
 }
 
 module.exports = {
     getCart,
     addCart,
-    editCart,
     deleteCart
 }
