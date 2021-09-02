@@ -1,11 +1,10 @@
-import { Box , Flex } from "@chakra-ui/react";
+import { Box , Flex,Button } from "@chakra-ui/react";
 
-const Button2 = () => {
+const Button1 = (props) => {
     return (
-        <Box as="button" borderRadius="xl" bg="teal" color="white" px={8} h={14} marginRight={6} fontSize={20}>
-  Button1
-</Box>
+    <Button borderRadius="25px" bg={props.bgColor} color="white" px={8} h={12} fontSize={18}  colorScheme="red">
+  {props.value}</Button>
     )
 }
 
-export default Button2;
+export default Button1;

@@ -7,6 +7,7 @@ import {
   Button,
   Grid,
   GridItem,
+  SimpleGrid,
   Box,
   Image,
   Badge,
@@ -15,8 +16,11 @@ import {
 import CartItem from "../carditem/carditem";
 
 const Body = () => {
+
+    
+
   return (
-    <Box h="90%" w="100%" bg="gray.300" display="flex" justifyContent="center">
+    <Box h="90%" w="100%" bg="white" display="flex" justifyContent="center"   >
         <Box w="70%" h="100%" bg="teal.200">
         <Grid
       templateRows="repeat(2, 1fr)"
@@ -26,32 +30,36 @@ const Body = () => {
       <GridItem colSpan={6} bg="white">
         <Tabs>
           <TabList>
-            <Tab>Electricity</Tab>
-            <Tab>Vehicle</Tab>
-            <Tab>Home</Tab>
+            <Tab>CAR</Tab>
+            <Tab>HOME</Tab>
+            <Tab>FASHION</Tab>
           </TabList>
 
           <TabPanels>
             <TabPanel>
-              <Grid
+              <SimpleGrid
+                minChildWidth="300px" 
+                gap={2}
+                
+              >
+                <CartItem />
+              </SimpleGrid>
+            </TabPanel>
+            <TabPanel>
+            <Grid
                 templateRows="repeat(2, 1fr)"
                 templateColumns="repeat(3, 1fr)"
                 gap={2}
               >
-                <CartItem />
-                <CartItem />
-                <CartItem />
-                <CartItem />
-                <CartItem />
-                <CartItem />
-              </Grid>
-            </TabPanel>
-            <TabPanel>
-              <Grid
-                templateRows="repeat(4, 1fr)"
-                templateColumns="repeat(3, 1fr)"
-                gap={4}
-              ></Grid>
+            <SimpleGrid minChildWidth="120px" spacing="40px">
+  <Box bg="tomato" height="160px"></Box>
+  <Box bg="tomato" height="160px"></Box>
+  <Box bg="tomato" height="160px"></Box>
+  <Box bg="tomato" height="160px"></Box>
+  <Box bg="tomato" height="160px"></Box>
+  <Box bg="tomato" height="160px"></Box>
+</SimpleGrid>
+</Grid>
             </TabPanel>
             <TabPanel>
               <Grid

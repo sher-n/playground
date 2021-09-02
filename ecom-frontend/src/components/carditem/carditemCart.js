@@ -13,6 +13,7 @@ import {
     AspectRatio,
   } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import Button1 from "../button/button1";
 import Button2 from "../button/button2";
 
 const  CartItemCart = () => {
@@ -28,72 +29,77 @@ const  CartItemCart = () => {
     }
   
     return (
-        <div style={{ display: "grid" }}>
-        <Box
-          maxW="sm"
-          borderWidth="1px"
-          margin="10px"
-          borderRadius="lg"
-          overflow="hidden"
-        >
-          <AspectRatio maxW="100%" ratio={4 / 3}>
-           <Link to="/productdetail" ><Image src={property.imageUrl} /></Link>
-          </AspectRatio>
-          <Box p="2">
-            <Box d="flex" alignItems="baseline">
-              <Badge
-                borderRadius="full"
-                px="2"
-                colorScheme="teal"
-              >
-                New
-              </Badge>
-              <Box
-                color="gray.500"
-                fontWeight="semibold"
-                letterSpacing="wide"
-                fontSize="xs"
-                textTransform="uppercase"
-                ml="2"
-              >
-                {property.amount} pieces
-              </Box>
-            </Box>
-
-            <Box
-              mt="1"
-              fontWeight="semibold"
-              as="h4"
-              lineHeight="tight"
-              isTruncated
+      <div style={{ display: "block" }}>
+      <Box
+        maxW="sm"
+        borderWidth="1px"
+        margin="10px"
+        borderRadius="lg"
+        overflow="scroll"
+      >
+        <AspectRatio maxW="100%" ratio={4 / 3}>
+         <Link to="/productdetail" ><Image src={property.imageUrl} /></Link>
+        </AspectRatio>
+        <Box p="2">
+          <Box d="flex" alignItems="baseline">
+            <Badge
+              borderRadius="full"
+              px="2"
+              colorScheme="teal"
             >
-              {property.name}
-            </Box>
-
-            <Box>
-              {property.price}
-              <Box as="span" color="gray.600" fontSize="sm">
-                THB
-              </Box>
-            </Box>
-
-            <Box d="flex" mt="2" alignItems="center">
-              <Box
-                as="span"
-                ml="2"
-                color="gray.600"
-                fontSize="sm"
-              >
-                555 review
-              </Box>
-            </Box>
-            <Box d="flex" justifyContent="space-between">
-              <Button bgColor="red.200">Buy</Button>
+              New
+            </Badge>
+            <Box
+              color="gray.500"
+              fontWeight="semibold"
+              letterSpacing="wide"
+              fontSize="xs"
+              textTransform="uppercase"
+              ml="2"
+            >
+              {property.amount} pieces
             </Box>
           </Box>
+
+          <Box
+            mt="1"
+            fontWeight="semibold"
+            as="h4"
+            lineHeight="tight"
+            isTruncated
+          >
+            {property.name}
+          </Box>
+
+          <Box>
+            {property.price}
+            <Box as="span" color="gray.600" fontSize="sm">
+              THB
+            </Box>
+          </Box>
+
+          <Box d="flex" mt="2" alignItems="center">
+            <Box
+              as="span"
+              ml="2"
+              color="gray.600"
+              fontSize="sm"
+            >
+              555 review
+            </Box>
+          </Box>
+          <Box d="flex" justifyContent="center">
+          
+            <Button1 bgColor="#E47711" value="BUY" />
+          </Box>
         </Box>
-        <Button2 value="REMOVE"/>
-      </div>
+      </Box>
+      <Box d="flex" justifyContent="center">
+          
+      <Button2 bg="#DF684E" value="REMOVE" />
+          </Box>
+          
+    </div>
     )
   }
 

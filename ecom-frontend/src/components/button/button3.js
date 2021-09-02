@@ -1,10 +1,13 @@
-import { Box , Flex } from "@chakra-ui/react";
+import { Box , Flex ,Link, Button} from "@chakra-ui/react";
 
 const Button3 = (props) => {
     return (
-        <Box as="button" borderRadius="xl" bg="gray.500" color="white" px={12} h={30} fontSize={20}>
+        <Link to={props.link}><Box as="button"  borderRadius="xl" bg={props.bg? props.bg: "#6D4D36"}  w="max" h={16} marginRight={6} >
+            <Button color={props.color? props.color : "white"} variant="link" fontSize={25}>
   {props.value}
-</Box>
+  </Button>
+
+</Box></Link>
     )
 }
 

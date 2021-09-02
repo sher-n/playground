@@ -2,9 +2,11 @@ import { Box , Flex, Grid, GridItem } from "@chakra-ui/react";
 import Button2 from "../components/button/button2";
 import Button3 from "../components/button/button3";
 import { Link } from "react-router-dom";
-const Store2 = (props) => {
+import NavbarBack from "../components/navbar/navbarBack";
+const MyStore = (props) => {
     
     return (
+      <div><NavbarBack to="/user" />
         <Box h="90vh" w="100%" bg="gray.300" display="flex" justifyContent="center">
         <Box w="60%" h="100%" bg="teal.200" display="block">
             <Box h="20%" bg="teal.300">My Store</Box>
@@ -36,8 +38,8 @@ const Store2 = (props) => {
 </Grid> */}
             </Box>
         </Box>
-        </Box>
+        </Box></div>
     )
 }
 
-export default Store2;
+export default MyStore;

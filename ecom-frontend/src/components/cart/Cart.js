@@ -27,8 +27,10 @@ const Cart = () => {
       <Grid
                 templateRows="repeat(2, 1fr)"
                 templateColumns="repeat(3, 1fr)"
-                gap={2}
+                gap={2} 
+                flexWrap="wrap"
               >
+                
                 <CartItemCart />
                 <CartItemCart />
                 <CartItemCart />

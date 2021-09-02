@@ -4,7 +4,7 @@ import NavbarUser from "../components/navbar/navbarUser";
 
 const CartPage = () => {
   return (
-    <div style={{ height: "100vh" }}>
+    <div>
       <NavbarUser />
       <Cart />
     </div>
