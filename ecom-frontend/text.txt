@@ -1,8 +1,9 @@
-todo front
-- add cart
-- add store
-- add delivery pending list
+-cartitem ---- border fix
 
-todo back
-authen user
-path param
+-cart page ----ok
+
+product detail page--- ok
+
+-checkout page ---- responsive
+
+-pendinglist page  ---ok

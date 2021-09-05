@@ -15,48 +15,79 @@ import LocalStorage from "../service/LocalStorage";
 import axios from "../config/axios";
 import { withRouter } from "react-router-dom";
 
-
-
 const Login = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const loginUser =  () => {
-
-    axios.post("/login", {
-      username: username,
-      password: password
-    }).then(res => {
-      console.log(res);
-      alert(res.data.message);
-      LocalStorage.setToken(res.data.token);
-      props.setRole("user");
-      props.history.push("/user");
-    }).catch(e => console.log(e));
-
-}
+  const loginUser = () => {
+    axios
+      .post("/login", {
+        username: username,
+        password: password,
+      })
+      .then((res) => {
+        console.log(res);
+        alert(res.data.message);
+        LocalStorage.setToken(res.data.token);
+        props.setRole("user");
+        props.history.push("/user");
+      })
+      .catch((e) => {
+        alert("wrong username or password");
+        console.log(e);
+      });
+  };
 
   return (
     <div>
       <NavbarBack to="/" />
-    <Flex height="100vh" alignItems="center" justifyContent="center">
-      <Flex direction="column" background="white" alignItems="center" w="max" p={20} rounded={6} >
-      <Button w="md" h={65} background="#243C49" colorScheme="linkedin">SIGN IN</Button>
-            <br />
-        <FormControl id="register">
-          <InputComponent placeholder="username" onChange={(e) => setUsername(e.target.value)}
-              variant="filled" type="text" background="white" required/>
-              <br />
-          <InputComponent placeholder="Password" onChange={(e) => setPassword(e.target.value)}
+      <Flex height="100vh" alignItems="center" justifyContent="center">
+        <Flex
+          direction="column"
+          background="white"
+          alignItems="center"
+          w="max"
+          p={20}
+          rounded={6}
+        >
+          <Button w="md" h={65} background="#243C49" colorScheme="linkedin">
+            SIGN IN
+          </Button>
+          <br />
+          <FormControl id="register">
+            <InputComponent
+              placeholder="username"
+              onChange={(e) => setUsername(e.target.value)}
               variant="filled"
-              type="password" background="white" required/>
-              <br />
-        </FormControl>
-        <Button onClick={loginUser} borderRadius="3xl" w="lg" bg="#6D4D36" colorScheme="orange"> LOG IN</Button>
+              type="text"
+              background="white"
+              required
+            />
+            <br />
+            <InputComponent
+              placeholder="Password"
+              onChange={(e) => setPassword(e.target.value)}
+              variant="filled"
+              type="password"
+              background="white"
+              required
+            />
+            <br />
+          </FormControl>
+          <Button
+            onClick={loginUser}
+            borderRadius="3xl"
+            w="lg"
+            bg="#6D4D36"
+            colorScheme="orange"
+          >
+            {" "}
+            LOG IN
+          </Button>
+        </Flex>
       </Flex>
-    </Flex>
     </div>
-  )
+  );
 };
 
 export default withRouter(Login);

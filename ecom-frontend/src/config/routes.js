@@ -25,7 +25,7 @@ const components = {
         component: Login
     },
     productdetail : {
-        url: "/productdetail",
+        url: "/productdetail/:productId",
         component: ProductDetail
     },
     registerproduct : {
@@ -57,7 +57,7 @@ const components = {
         component: PendingList
     },
     checkout : {
-        url: "/checkout",
+        url: "/checkout/:productId",
         component: CheckOut
     },
 

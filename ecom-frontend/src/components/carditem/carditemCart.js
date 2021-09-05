@@ -16,17 +16,16 @@ import { Link } from "react-router-dom";
 import Button1 from "../button/button1";
 import Button2 from "../button/button2";
 
-const  CartItemCart = () => {
-    const property = {
-      imageUrl: "https://bit.ly/2Z4KKcF",
-      imageAlt: "Rear view of modern home with pool",
-      beds: 3,
-      baths: 2,
-      title: "Modern home in city center in the heart of historic Los Angeles",
-      formattedPrice: "$1,900.00",
-      reviewCount: 34,
-      rating: 4,
-    }
+const  CartItemCart = (props) => {
+
+  const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'THB',
+  
+    // These options are needed to round to whole numbers if that's what you want.
+    //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
+    //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
+  });
   
     return (
       <div style={{ display: "block" }}>
@@ -36,29 +35,20 @@ const  CartItemCart = () => {
         margin="10px"
         borderRadius="lg"
         overflow="scroll"
+        bg="#FDF8E7"
       >
         <AspectRatio maxW="100%" ratio={4 / 3}>
-         <Link to="/productdetail" ><Image src={property.imageUrl} /></Link>
+         <Link to={`/productdetail/${props.id}`}><Image src={props.link} /></Link>
         </AspectRatio>
         <Box p="2">
           <Box d="flex" alignItems="baseline">
             <Badge
               borderRadius="full"
               px="2"
-              colorScheme="teal"
+              colorScheme="red"
             >
               New
             </Badge>
-            <Box
-              color="gray.500"
-              fontWeight="semibold"
-              letterSpacing="wide"
-              fontSize="xs"
-              textTransform="uppercase"
-              ml="2"
-            >
-              {property.amount} pieces
-            </Box>
           </Box>
 
           <Box
@@ -68,35 +58,26 @@ const  CartItemCart = () => {
             lineHeight="tight"
             isTruncated
           >
-            {property.name}
+            {props.product_name}
           </Box>
 
           <Box>
-            {property.price}
-            <Box as="span" color="gray.600" fontSize="sm">
-              THB
-            </Box>
+            {formatter.format(props.price)}
           </Box>
 
           <Box d="flex" mt="2" alignItems="center">
-            <Box
-              as="span"
-              ml="2"
-              color="gray.600"
-              fontSize="sm"
-            >
-              555 review
-            </Box>
+          
           </Box>
           <Box d="flex" justifyContent="center">
           
-            <Button1 bgColor="#E47711" value="BUY" />
+            <Link to={`/checkout/${props.id}`}><Button1 bgColor="#E47711" value="BUY" /></Link>
           </Box>
         </Box>
       </Box>
       <Box d="flex" justifyContent="center">
-          
+          <Box />
       <Button2 bg="#DF684E" value="REMOVE" />
+      <Box />
           </Box>
           
     </div>

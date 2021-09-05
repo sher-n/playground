@@ -12,23 +12,31 @@ import {
     Badge,
     AspectRatio,
   } from "@chakra-ui/react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import Button1 from "../button/button1";
 
-const  CartItem = () => {
-    const property = {
-      imageUrl: "https://bit.ly/2Z4KKcF",
-      imageAlt: "Rear view of modern home with pool",
-      beds: 3,
-      baths: 2,
-      title: "Modern home in city center in the heart of historic Los Angeles",
-      formattedPrice: "$1,900.00",
-      reviewCount: 34,
-      rating: 4,
-    }
+const  CartItem = (props) => {
+
+
+
+  const addCart = () => {
+    axios.post('/cart',{
+      product_name: props.product_name
+    }).then(res => {
+      console.log(res);
+      alert(res.data.message);
+      props.history.push("/user");
+    }).catch(e => console.log(e));
+  }
+  
+  const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'THB'
+  });
   
     return (
-        <div style={{ display: "grid" }}>
+        <div>
         <Box
           bg="#FDF8E7"
           maxW="sm"
@@ -38,19 +46,19 @@ const  CartItem = () => {
           overflow="scroll"
         >
           <AspectRatio maxW="90%" ratio={4 / 3} margin={5} >
-           <Link to="/productdetail" ><Image borderRadius="md" src={property.imageUrl} /></Link>
+           <Link to={`/productdetail/${props.id}`} ><Image borderRadius="xl" src={props.link} /></Link>
           </AspectRatio>
           <Box p="2">
             <Box d="flex" flexDirection="column" marginTop={-5} marginLeft={5} marginBottom={5}>
-              <Box><strong>Hotel De Luna</strong><Box>{property.formattedPrice}  THB</Box></Box>
+              <Box><strong>{props.product_name}</strong><Box>{formatter.format(props.price)}</Box></Box>
               <Box></Box>
               
             </Box>
 
             <Box d="flex" justifyContent="space-between" margin={2}>
             
-              <Button1 bgColor="#9F6D23" value="CART" />
-              <Button1 bgColor="#E47711" value="BUY" />
+              <Button1 onClick={addCart} bgColor="#9F6D23" value="CART" />
+              <Link to={`/checkout/${props.id}`}><Button1 bgColor="#E47711" value="BUY" /></Link>
             </Box>
           </Box>
         </Box>

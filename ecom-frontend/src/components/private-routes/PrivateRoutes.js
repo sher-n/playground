@@ -1,6 +1,9 @@
 import React from "react";
 import { Redirect,Switch,Route } from "react-router-dom";
 import ConfigRoutes from "../../config/routes";
+import CheckOut from "../checkout/Checkout";
+import NavbarBack from "../navbar/navbarBack";
+import ProductDetail from "../productDetail/ProductDetail";
 
 
 const PrivateRoutes = (props) => {
@@ -10,14 +13,28 @@ const PrivateRoutes = (props) => {
     return (
         <div>
                 <Switch>
-                    {allowedRoutes.map(routes => (<Route 
-                    exact path={routes.url}
-                    key={routes.url}
-                    
-                    ><routes.component setRole={props.setRole} /></Route>
-                    ))}
+                    {allowedRoutes.map(routes => {
+                         return (<Route 
+                            exact path={routes.url}
+                            key={routes.url}
+                            
+                            ><routes.component setRole={props.setRole} /></Route>
+                            )
+                    })}
                     <Redirect to={redirectRoute}></Redirect>
     
+      </Switch>
+      <Switch>
+        <Route exact path={`/productdetail/:productId`} key={`/productdetail/:productId`}>
+          <NavbarBack setRole={props.setRole} to="/user" />
+          <ProductDetail />
+        </Route>
+      </Switch>
+      <Switch>
+        <Route exact path={`/checkout/:productId`} key={`/checkout/:productId`}>
+          <NavbarBack setRole={props.setRole} to="/user" />
+          <CheckOut />
+        </Route>
       </Switch>
         </div>
     )

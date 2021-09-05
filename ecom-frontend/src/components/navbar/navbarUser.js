@@ -1,83 +1,76 @@
-import { Box, Flex, Grid } from "@chakra-ui/react";
+import { Box, Flex, Grid, Button } from "@chakra-ui/react";
 import Button2 from "../button/button2";
 import { Link } from "react-router-dom";
 import Button3 from "../button/button3";
 import LocalStorage from "../../service/LocalStorage";
 import React, { useState, useEffect } from "react";
 import axios from "../../config/axios";
+import "./styles.css";
 
 const NavbarUser = (props) => {
-  const [storePath,setStorePath] = useState(0);
+  const [storeURLPath,setStoreURLPath] = useState(0);
+const [user, setUser] = useState([]);
+const [toggleBar, setToggleBar] = useState(false)
 
-  useEffect(() => {
-    // Update the document title using the browser API
-    axios.get("/store", {}).then((res) => {
-      console.log("res===>",res.data.length)
-      setStorePath(res.data.length)
-      return;
-      
-    }).catch(e => console.log(e));
-  });
+useEffect(() => {
+  // Update the document title using the browser API
+  axios.get("/users", {}).then((res) => {
+    console.log("user===>",res.data)
+    setUser(res.data[0]);
+    return;
+    
+  }).catch(e => console.log(e));
+  
+  axios.get("/store", {}).then((res) => {
+    console.log("amount product===>",res.data.length)
+    setStoreURLPath(res.data.length);
+    return;
+    
+  }).catch(e => console.log(e));
+},[]);
 
-  const user = {
-    name: "Sher",
-  };
 
   const logout = () => {
     LocalStorage.removeToken();
     props.setRole("guest");
   };
   return (
-    <div>
-      <Box
-        display="flex"
-        bg="#FDF8E7"
-        w="100%"
-        p={1}
-        color="white"
-        flexShrink="-moz-initial"
-      >
-        <Flex bg="#FDF8E7" w="50%" p={1} justifyContent="flex-start">
-          <Link to="/">
-            <Box
-              borderRadius="md"
-              bg="#FDF8E7"
-              color="black"
-              px={4}
-              h={12}
-              fontSize={30}
-              position="absolute"
-            >
-              Shop & Chill
-            </Box>
-          </Link>
-        </Flex>
-
-        <Grid templateColumns="repeat(4, 1fr)" gap={6}>
-          <Box />
-
-          <Link to="/profile">
-            <Button3
+  
+    <nav className="navbar" >
+        <div className="brand-title">Shop & Chill</div>
+        <a href="#" className="toggle-button" onClick={() => setToggleBar(!toggleBar)}>
+          <span className="bar"></span>
+          <span className="bar"></span>
+          <span className="bar"></span>
+        </a>
+        
+        {toggleBar? (<Box bg="#243C49"  border="50px" borderColor="gray.200" padding="2" color="white" display="flex" justifyContent="center" w="100%"><Link to="/profile">MY PROFILE</Link></Box>) : ""}
+        {toggleBar? (<Box bg="#243C49"  border="50px" borderColor="gray.200" padding="2" color="white" display="flex" justifyContent="center" w="100%"><Link to="/mystore">MY STORE</Link></Box>) : ""}
+        {toggleBar? (<Box bg="#243C49"  border="50px" borderColor="gray.200" padding="2" color="white" display="flex" justifyContent="center" w="100%"><Link to="/cart">MY CART</Link></Box>) : ""}
+        {toggleBar? (<Box bg="#243C49"  border="50px" borderColor="gray.200" padding="2" color="white" display="flex" justifyContent="center" w="100%"><Button variant="link" onClick={logout}>
+    LOGOUT
+  </Button>
+</Box>) : ""}
+        
+        
+        
+        <div className="navbar-links">
+        <Link to="/profile">
+        <Button3
               variant="link"
               bg="#FDF8E7"
               color="black"
-              value={"Welcome, " + user.name}
+              value={"Welcome, " + user.username}
             />
           </Link>
 
-          {storePath ? (
-            <Link to="/mystore">
-              <Button2 value="MY STORE" />
-            </Link>
-          ) : (
-            <Link to="/emptystore">
-              <Button2 value="MY STORE" />
-            </Link>
+          {storeURLPath > 0 ? (<Button2 to="/mystore" value="MY STORE" />
+          ) : (<Button2 to="/emptystore" value="MY STORE" />
           )}
+          <Button2 to="/cart" value="MY CART" />
           <Button2 onClick={logout} value="LOGOUT" />
-        </Grid>
-      </Box>
-    </div>
+        </div>
+      </nav>
   );
 };
 
