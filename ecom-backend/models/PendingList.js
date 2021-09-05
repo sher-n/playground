@@ -14,6 +14,9 @@ module.exports = (sequelize, dataTypes) => {
         },
         category : {
             type : dataTypes.STRING(255)
+        },
+        customer_id : {
+            type : dataTypes.STRING(255)
         }
     },{
         tableName : 'pendinglists',

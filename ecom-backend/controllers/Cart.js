@@ -14,6 +14,11 @@ const addCart = async (req,res) => {
             product_name
         }
     })
+
+    if(!targetProduct) {
+        res.status(404).send({message: 'sorry,product not found.'})
+    }
+
     await db.Cart.create({
         user_id: req.user.id,
         product_id :targetProduct.id,

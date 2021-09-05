@@ -2,12 +2,12 @@ const db = require("../models");
 
 const getProfile = async (req,res) => {
     // const userList = await db.Profile.findAll();
-    const userList = await db.Profile.findOne({
+    const targetUser = await db.Profile.findOne({
         where : {
             user_id : req.user.id
         }
     });
-    res.status(200).send(userList);
+    res.status(200).send(targetUser);
 }
 
 const editProfile = async (req,res) => {
@@ -44,6 +44,13 @@ const editProfile = async (req,res) => {
                 address : address
             });
             return res.status(201).send({message : "edited address"})
+            
+        }
+        if (req.params.action == "balance") {
+            await targetProfile.update({ 
+                balance: balance
+            });
+            return res.status(201).send({message : "added balance"})
             
         }
 

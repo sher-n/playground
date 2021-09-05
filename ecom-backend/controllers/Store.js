@@ -2,16 +2,34 @@ const db = require("../models");
 
 
 
-const getCarProduct = async (req,res) => {
-    const allProduct = await db.Product.findAll({
+const getSportProduct = async (req,res) => {
+    const allSportProduct = await db.Product.findAll({
         where: {
-            category: "car"
+            category: "SPORT"
         }
     })
-    res.status(200).send(allProduct);
+    res.status(200).send(allSportProduct);
+}
+const getFashionProduct = async (req,res) => {
+    const allFashionProduct = await db.Product.findAll({
+        where: {
+            category: "FASHION"
+        }
+    })
+    res.status(200).send(allFashionProduct);
+}
+const getCarProduct = async (req,res) => {
+    const allCarProduct = await db.Product.findAll({
+        where: {
+            category: "CAR"
+        }
+    })
+    res.status(200).send(allCarProduct);
 }
 
 const getProduct = async (req,res) => {
+
+    
     const targetStore = await db.Store.findOne({ 
         where : {
             user_id : req.user.id
@@ -19,29 +37,36 @@ const getProduct = async (req,res) => {
     })
     const productList = await db.Product.findAll({ 
         where : {
-            store_id : targetStore.id
+            store_id : targetStore.user_id
         }
      });
     res.status(200).send(productList);
 }
 
-const addProduct = async (req,res) => {
-    const { product_name , price, link, amount, description,category} = req.body;
-    const targetStore = await db.Store.findOne({
+const getOneProduct = async (req,res) => {
+
+    
+    const targetProduct = await db.Product.findOne({ 
         where : {
-            user_id : req.user.id
+            id : req.params.id
         }
-    })
+     });
+    res.status(200).send(targetProduct);
+}
+
+const addProduct = async (req,res) => {
+    const { product_name , price, link, amount, description,category, store_id} = req.body;
+    
         await db.Product.create({
             product_name,
             price,
             link,
             description,
             category,
-            store_id: targetStore.id
+            store_id
         });
 
-        res.status(201).send({ message : `Product ${product_name} added `});
+        res.status(200).send({ message : `Product ${product_name} added `});
     
 };
 
@@ -57,19 +82,20 @@ const editProduct = async (req,res) => {
     }
     const targetProduct = await db.Product.findOne({
         where : {
-            product_name: product_name,
-            store_id : targetStore.id
+            id: req.params.id
         }
     })
-
-    await targetProduct.update({
-        product_name,
-        price,
-        link,
-        amount,
-        description,
-        category
-    })
+    if (product_name) {
+        await targetProduct.update({
+            product_name,
+        })
+    }
+    if (price) {
+        await targetProduct.update({
+            price,
+        })
+    }
+    
     res.status(201).send({ message : `edited product id ${product_name}` })
 }
 
@@ -85,6 +111,9 @@ const deleteProduct = async (req,res) => {
 
 module.exports = {
     getCarProduct,
+    getFashionProduct,
+    getSportProduct,
+    getOneProduct,
     getProduct,
     addProduct,
     editProduct,
