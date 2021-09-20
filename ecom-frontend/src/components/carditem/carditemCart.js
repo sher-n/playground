@@ -12,19 +12,30 @@ import {
     Badge,
     AspectRatio,
   } from "@chakra-ui/react";
+import axios from "../../config/axios";
 import { Link } from "react-router-dom";
 import Button1 from "../button/button1";
 import Button2 from "../button/button2";
+import { useState } from "react/cjs/react.development";
 
 const  CartItemCart = (props) => {
+  const [name, setName] = useState("");
+
+
+
+  const removeCart = () => {
+
+     axios.delete("/cart", { product_name : String(props.name) }).then((res) =>
+        {
+          console.log(res.data)
+        return
+        }).catch(e => console.log(e));
+      window.location.reload();
+}
 
   const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
-    currency: 'THB',
-  
-    // These options are needed to round to whole numbers if that's what you want.
-    //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
-    //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
+    currency: 'THB'
   });
   
     return (
@@ -38,7 +49,7 @@ const  CartItemCart = (props) => {
         bg="#FDF8E7"
       >
         <AspectRatio maxW="100%" ratio={4 / 3}>
-         <Link to={`/productdetail/${props.id}`}><Image src={props.link} /></Link>
+         <Link to={`/productdetail/${props.product_id}`}><Image src={props.link} /></Link>
         </AspectRatio>
         <Box p="2">
           <Box d="flex" alignItems="baseline">
@@ -58,7 +69,7 @@ const  CartItemCart = (props) => {
             lineHeight="tight"
             isTruncated
           >
-            {props.product_name}
+            {props.name}
           </Box>
 
           <Box>
@@ -76,7 +87,7 @@ const  CartItemCart = (props) => {
       </Box>
       <Box d="flex" justifyContent="center">
           <Box />
-      <Button2 bg="#DF684E" value="REMOVE" />
+      <Button2 onClick={removeCart} bg="#DF684E" value="REMOVE" />
       <Box />
           </Box>
           

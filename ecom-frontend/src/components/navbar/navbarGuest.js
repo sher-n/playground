@@ -1,27 +1,29 @@
-import { Box, Flex, Grid } from "@chakra-ui/react";
+import { Box, Flex, Button, Heading, Center } from "@chakra-ui/react";
 import Button2 from "../button/button2";
 import { Link } from "react-router-dom";
 
 const NavbarGuest = (props) => {
   return (
-    <div>
-      <Box display="flex" bg="#FDF8E7" w="100%"  p={1} color="white">
-        <Flex bg="#FDF8E7" w="50%" p={1} justifyContent="flex-start" >
-        <Link to="/"><Box borderRadius="md" bg="#FDF8E7" color="black" px={4} h={12} alignSelf="center" fontSize={30}>
-            Shop & Chill
-          </Box></Link>
-        </Flex>
-     
-          
-          <Grid templateColumns="repeat(5, 1fr)" gap={6}>
-            <Box />
-            <Box></Box>
-          <Button2 to="/" value="CONTACT US" />
-          <Button2 to="/login" value="LOGIN"/>
-          <Button2 to="/register" value="REGISTER"/>
-</Grid>
-      </Box>
-    </div>
+    <Box bg="#FDF8E7">
+<Flex bg="#FDF8E7" justifyContent="space-between">
+  <Box p="2" margin={3} >
+    <Link to={localStorage.getItem("ACCESS TOKEN") ? "/user" : "/"}><Heading size="lg"> Shop & Chill </Heading></Link>
+  </Box>
+  <Box bg="#FDF8E7" h="10%"  d="flex" justifyContent="center" flexWrap="wrap">
+          <Box bg="#FDF8E7">
+  <Button flexShrink={2} marginTop={5} marginBottom={3}  size="md" borderRadius="xl" bg="#6D4D36" colorScheme="orange" mr="2">
+      CONTACT
+    </Button>
+    <Link to="/login"><Button  size="md" marginTop={5} marginBottom={3} borderRadius="xl" bg="#6D4D36" colorScheme="orange" mr="2">
+      LOGIN
+    </Button></Link>
+    <Link to="/register"><Button size="md" marginTop={5} marginBottom={3} borderRadius="xl" bg="#6D4D36" colorScheme="orange" mr="2">
+      REGISTER
+    </Button></Link>
+    </Box>
+  </Box>
+</Flex>
+    </Box>
   );
 };
 

@@ -37,7 +37,7 @@ const MyStore = (props) => {
         <Box w="5%" />
         <Box>
           <Box w="100%" h="100%" bg="white" display="block">
-            <Box h="20vh" alignSelf="center" position="relative"></Box>
+            <Box h="10vh" alignSelf="center" position="relative"></Box>
             <Box fontSize="xl" position="relative">
               <strong>STORE LISTS</strong>
             </Box>

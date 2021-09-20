@@ -3,6 +3,7 @@ import { Redirect,Switch,Route } from "react-router-dom";
 import ConfigRoutes from "../../config/routes";
 import CheckOut from "../checkout/Checkout";
 import NavbarBack from "../navbar/navbarBack";
+import NavbarUser from "../navbar/navbarUser";
 import ProductDetail from "../productDetail/ProductDetail";
 
 
@@ -32,7 +33,7 @@ const PrivateRoutes = (props) => {
       </Switch>
       <Switch>
         <Route exact path={`/checkout/:productId`} key={`/checkout/:productId`}>
-          <NavbarBack setRole={props.setRole} to="/user" />
+          <NavbarUser setRole={props.setRole} to="/user" />
           <CheckOut />
         </Route>
       </Switch>

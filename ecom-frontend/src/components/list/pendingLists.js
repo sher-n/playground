@@ -2,15 +2,23 @@ import { Box, Flex, Grid, GridItem, Button, Image, AspectRatio, Input } from "@c
 import { Link } from "react-router-dom";
 import Button5 from "../button/button5";
 import axios from "../../config/axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 const PendingLists = (props) => {
     const [nameEdit, setNameEdit] = useState("")
     const [priceEdit, setPriceEdit] = useState("")
     const [editToggle1, setEditToggle1] = useState(false);
+    const [customerName, setCustomerName] = useState("")
+    useEffect(() => {
 
-
+      axios.get(`/profiles/${props.customer_id}`, {}).then((res) => {
+        console.log("res.data===>",res.data)
+        setCustomerName(res.data)
+        return;
+        
+      }).catch(e => console.log(e));
+    },[]);
 
     const removeProduct=() => {
         axios.delete(`/pendinglist/${props.id}`, {}).then(res => { 
@@ -51,9 +59,10 @@ const PendingLists = (props) => {
 <GridItem w="100%" h="20" colSpan={3} bg="white">
 <Grid templateRows="repeat(2, 1fr)" alignItems="center" gap={1}>
 {editToggle1? <Input placeholder="change product name" onChange={(e) => setNameEdit(e.target.value)}
-              variant="unstyled" type="text" background="white" required/> :  <Box w="100%" h="10" ><strong>{props.product_name}</strong></Box>}
+              variant="unstyled" type="text" background="white" required/> :  <Box w="100%" h="10" ><strong>{props.product_name} from {customerName}</strong></Box>}
 {editToggle1? <Input placeholder="change price" onChange={(e) => setPriceEdit(e.target.value)}
               variant="unstyled" type="text" background="white" required/> :  <Box w="100%" h="10" >{formatter.format(props.price)}</Box>}
+
 
 </Grid>
 </GridItem>

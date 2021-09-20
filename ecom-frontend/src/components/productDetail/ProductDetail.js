@@ -4,8 +4,9 @@ import { Link } from "react-router-dom";
 import Button4 from "../button/button4";
 import NavbarBack from "../navbar/navbarBack";
 import { useEffect, useState } from "react";
-import axios from "../../config/axios";
+import axios from "axios";
 import { useParams} from "react-router-dom";
+import LocalStorage from "../../service/LocalStorage";
 const ProductDetail = (props) => {
   let { productId } = useParams();
   const [ProductDetailData, setProductDetail] = useState({})
@@ -19,6 +20,16 @@ const ProductDetail = (props) => {
       
     }).catch(e => console.log(e));
   },[]);
+
+  const addCart = () => {
+    axios.post('/cart',{
+      product_name: ProductDetailData.product_name
+    }).then(res => {
+      console.log(res);
+      alert(res.data.message);
+      props.history.push("/user");
+    }).catch(e => console.log(e));
+  }
   
   const formatter = new Intl.NumberFormat("en-US", {
     style: "currency",
@@ -90,8 +101,9 @@ const ProductDetail = (props) => {
               </Box>
         
         </Box>
-        <Box h="10%" bg="white" d="flex" justifyContent="center" flexWrap="wrap">
-                    <Button4 bg="#243C49" value="CART" />
+            <Box h="10%" bg="white" d="flex" justifyContent="center" flexWrap="wrap">
+                <Button4 onClick={addCart} bg="#243C49" value="CART" />
+
                     <br />
                     <br />
                     <br />

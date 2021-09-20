@@ -67,7 +67,7 @@ const addProduct = async (req,res) => {
         });
 
         res.status(200).send({ message : `Product ${product_name} added `});
-    
+        //trycatch
 };
 
 const editProduct = async (req,res) => {

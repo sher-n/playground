@@ -86,9 +86,11 @@ const CheckOut = (props) => {
               justifyContent="center"
               flexWrap="wrap"
             >
-              <AspectRatio w="25vw" h="30vh" ratio={4/3} justifyContent="center" >
+              <div style={{display: "block", position: "relative"}}>
+              <AspectRatio marginBottom={10} w="25vw" h="30vh" ratio={4/3} justifyContent="center" >
                   <Image src={ProductDetailData.link} borderRadius={25} />
                 </AspectRatio>
+                </div>
                 <Box w="5vw"/>
                 <Grid
                   templateRows="repeat(5, 1fr)"

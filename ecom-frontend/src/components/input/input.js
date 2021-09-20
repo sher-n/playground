@@ -2,9 +2,9 @@ import { Input, Stack } from "@chakra-ui/react";
 
 const InputComponent = (props) => {
   return (
-    <Stack spacing={3} w="max">
+    <Stack w="md">
       <Input
-        w="lg"
+        w="80%"
         onChange={props.onChange}
         placeholder={props.placeholder}
         variant={props.variant}

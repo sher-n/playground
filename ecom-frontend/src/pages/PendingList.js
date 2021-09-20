@@ -6,6 +6,7 @@ import NavbarBack from "../components/navbar/navbarBack";
 import { useEffect, useState } from "react";
 import axios from "../config/axios";
 import PendingLists from "../components/list/pendingLists";
+import NavbarUser from "../components/navbar/navbarUser";
 
 const PendingList = (props) => {
 
@@ -27,17 +28,17 @@ const PendingList = (props) => {
       <div>
       
     <div>
-      <NavbarBack to="/user" position="fixed" />
-      <Box h="90vh" w="100%" bg="white" display="flex" justifyContent="center">
+      <NavbarUser to="/user" />
+      <Box h="80vh" w="100%" bg="white" display="flex" justifyContent="center">
         <Box w="5%" />
         <Box>
           <Box w="100%" h="100%" bg="white" display="block">
-            <Box h="20vh" alignSelf="center" position="relative"></Box>
+            <Box h="10vh" alignSelf="center" position="relative"></Box>
             <Box fontSize="xl" position="relative">
               <strong>PENDING LISTS</strong>
             </Box>
             <br />
-            { pendingLists ?pendingLists.map(prop => (<PendingLists id={prop.id} product_name={prop.product_name} price={prop.price} link={prop.link} />)) :  <Box h="20%" bg="white" d="flex" justifyContent="center">
+            { pendingLists ?pendingLists.map(prop => (<PendingLists id={prop.id} product_name={prop.product_name} price={prop.price} link={prop.link} customer_id={prop.customer_id} />)) :  <Box h="20%" bg="white" d="flex" justifyContent="center">
             
             <div><strong>YOU HAVE NO PENDING LIST</strong></div>     
         </Box>}

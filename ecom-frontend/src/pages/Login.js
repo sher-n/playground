@@ -5,6 +5,7 @@ import {
   Button,
   FormControl,
   Box,
+  Center
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -46,13 +47,13 @@ const Login = (props) => {
           direction="column"
           background="white"
           alignItems="center"
-          w="max"
-          p={20}
+          w="sm"
+          p={15}
           rounded={6}
         >
-          <Button w="md" h={65} background="#243C49" colorScheme="linkedin">
-            SIGN IN
-          </Button>
+                  <Center w="md" h={65} background="#243C49" borderRadius="lg" color="white" colorScheme="linkedin">
+          <strong>SIGN IN</strong>
+        </Center>
           <br />
           <FormControl id="register">
             <InputComponent
@@ -77,7 +78,7 @@ const Login = (props) => {
           <Button
             onClick={loginUser}
             borderRadius="3xl"
-            w="lg"
+            w="sm"
             bg="#6D4D36"
             colorScheme="orange"
           >

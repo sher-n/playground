@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import axios from "../config/axios";
 import InputComponent from "../components/input/input";
 import LocalStorage from "../service/LocalStorage";
+import NavbarUser from "../components/navbar/navbarUser";
 
 const Profile = (props) => {
   const [storeURLPath,setStoreURLPath] = useState(0);
@@ -85,7 +86,7 @@ const Profile = (props) => {
   const { id, name, bio, address, balance } = userData;
   return (
     <div>
-      <NavbarBack to="/user" />
+      <NavbarUser to="/user" />
       <Box h="90vh" w="100%" bg="white" display="flex" justifyContent="center">
         <Box w="60%" h="100%" bg="white" display="block">
           <Box h="30%" alignSelf="center">

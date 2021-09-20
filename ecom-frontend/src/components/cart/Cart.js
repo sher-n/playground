@@ -18,14 +18,14 @@ import CartItemCart from "../carditem/carditemCart";
 import { Link } from "react-router-dom";
 import Button4 from "../button/button4";
 
-const Cart = (props) => {
+const Cart = () => {
 
   const [cartLists, setCartLists] = useState([]);
 
   useEffect(() => {
 
     axios.get("/cart", {}).then((res) => {
-      console.log("res.data===>",res.data)
+      console.log("res.data cart===>",res.data)
       setCartLists(res.data)
       return;
       
@@ -53,7 +53,7 @@ justifyContent="center">
             flexWrap="wrap"
           >
             
-            {cartLists.map(props => (<CartItemCart id={props.id} product_name={props.product_name} price={props.price} link={props.link} description={props.description} />))}
+            {cartLists.map(props => (<CartItemCart key={props.id} id={props.id} name={props.product_name} product_id={props.product_id} price={props.price} link={props.link} description={props.description} />))}
           </Grid>
 </GridItem>
 </Grid>

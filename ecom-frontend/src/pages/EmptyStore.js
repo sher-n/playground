@@ -4,11 +4,12 @@ import Button3 from "../components/button/button3";
 import { Link } from "react-router-dom";
 import Button4 from "../components/button/button4";
 import NavbarBack from "../components/navbar/navbarBack";
+import NavbarUser from "../components/navbar/navbarUser";
 
 const EmptyStore = (props) => {
     
     return (
-        <div><NavbarBack to="/user" />
+        <div><NavbarUser />
         <Box h="90vh" w="100%" bg="white" display="flex" justifyContent="center">
         <Box w="60%" h="100%" bg="white" display="block">
         <Box h="30%" alignSelf="center">

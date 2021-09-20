@@ -10,6 +10,17 @@ const getProfile = async (req,res) => {
     res.status(200).send(targetUser);
 }
 
+const getPublicProfile = async (req,res) => {
+    // const userList = await db.Profile.findAll();
+    const targetUser = await db.Profile.findOne({
+        where : {
+            user_id : req.params.id
+        }
+    });
+    const { name } = targetUser
+    res.status(200).send(name);
+}
+
 const editProfile = async (req,res) => {
 
     const { name, bio, address,balance } = req.body;
@@ -70,5 +81,6 @@ const editProfile = async (req,res) => {
 
 module.exports = {
     getProfile,
-    editProfile
+    editProfile,
+    getPublicProfile
 }

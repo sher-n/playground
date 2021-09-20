@@ -4,6 +4,7 @@ import {
   Input,
   Button,
   FormControl,
+  Center
   
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
@@ -11,6 +12,7 @@ import InputComponent from "../components/input/input";
 import NavbarBack from "../components/navbar/navbarBack";
 import { useEffect, useState } from "react";
 import axios from "../config/axios";
+import NavbarUser from "../components/navbar/navbarUser";
 
 const RegisterProduct = (props) => {
   const [userDataId, setUserDataId] = useState("");
@@ -47,10 +49,12 @@ const RegisterProduct = (props) => {
   }
 
   return (
-<div><NavbarBack to="/mystore" />
-<Flex height="100vh" alignItems="center" justifyContent="center">
-<Flex direction="column" background="white" w="max" alignItems="center" p={20} rounded={6} >
-<Button w="md" h={65} background="#243C49" colorScheme="linkedin">REGISTER PRODUCT</Button>
+<div><NavbarUser to="/mystore" />
+<Flex height="80vh" alignItems="center" justifyContent="center">
+<Flex direction="column" background="white" w="sm" alignItems="center"  rounded={6} >
+<Center w="md" h={65} background="#243C49" borderRadius="lg" color="white" colorScheme="linkedin">
+          <strong>ADD PRODUCT</strong>
+        </Center>
       <br />
   <FormControl id="register">
   <InputComponent
@@ -100,7 +104,7 @@ const RegisterProduct = (props) => {
   <Button
             onClick={addProduct}
             borderRadius="3xl"
-            w="lg"
+            w="sm"
             bg="#6D4D36"
             colorScheme="orange"
           >

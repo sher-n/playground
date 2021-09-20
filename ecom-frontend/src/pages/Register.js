@@ -6,6 +6,7 @@ import {
   Button,
   FormControl,
   Box,
+  Center
 } from "@chakra-ui/react";
 import InputComponent from "../components/input/input";
 import { useState } from "react";
@@ -35,18 +36,19 @@ function Register(props) {
 
   return (
     <div><NavbarBack />
-    <Flex height="100vh" alignItems="center" justifyContent="center">
+    <Flex height="80vh" alignItems="center" justifyContent="center">
       <Flex
         direction="column"
         background="white"
-        w="max"
+        w="sm"
         alignItems="center"
-        p={20}
+        justifyContent="center"
+        p={15}
         rounded={6}
       >
-        <Button w="md" h={65} background="#243C49" colorScheme="linkedin">
-          SIGN UP
-        </Button>
+        <Center w="md" h={65} background="#243C49" borderRadius="lg" color="white" colorScheme="linkedin">
+          <strong>SIGN UP</strong>
+        </Center>
         <br />
         <FormControl id="register">
           <InputComponent
@@ -93,7 +95,7 @@ function Register(props) {
             </Alert>
           )}
         </FormControl>
-        <Button borderRadius="3xl" w="lg" bg="#6D4D36" colorScheme="orange" onClick={RegisterUser} >
+        <Button borderRadius="3xl" w="sm" bg="#6D4D36" colorScheme="orange" onClick={RegisterUser} >
           {" "}
           Register
         </Button>
